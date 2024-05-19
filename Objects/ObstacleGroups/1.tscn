@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqvjf5ld00pwm"]
+
+[ext_resource type="PackedScene" uid="uid://bc0bis23imr4t" path="res://Objects/Spike.tscn" id="1_xelna"]
+
+[node name="1" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_xelna")]
+position = Vector2(61, -21)

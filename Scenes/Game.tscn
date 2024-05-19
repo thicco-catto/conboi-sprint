@@ -1,0 +1,101 @@
+[gd_scene load_steps=16 format=3 uid="uid://c8i4oda3044vn"]
+
+[ext_resource type="Script" path="res://Scripts/Conboi.cs" id="1_1ivi0"]
+[ext_resource type="Script" path="res://Scripts/ObstacleSpawner.cs" id="1_5u07y"]
+[ext_resource type="Texture2D" uid="uid://dipaptjltvfov" path="res://Sprites/ConboiRun.png" id="1_ki6mm"]
+[ext_resource type="Texture2D" uid="uid://c1fv0l1mobfs4" path="res://Sprites/Floor.png" id="2_0hy0r"]
+[ext_resource type="Texture2D" uid="uid://84mj14tktj73" path="res://Sprites/ConboiJump.png" id="2_6s5dt"]
+[ext_resource type="PackedScene" uid="uid://dqvjf5ld00pwm" path="res://Objects/ObstacleGroups/1.tscn" id="2_t1w3j"]
+[ext_resource type="PackedScene" uid="uid://o0i1dtbv6se6" path="res://Objects/ObstacleGroups/2.tscn" id="3_3s5du"]
+[ext_resource type="PackedScene" uid="uid://wyvabcwaipt4" path="res://Objects/ObstacleGroups/3.tscn" id="4_vimja"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7v6f"]
+radius = 63.0
+height = 202.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuwmr"]
+atlas = ExtResource("2_6s5dt")
+region = Rect2(232, 0, 229, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0trn"]
+atlas = ExtResource("2_6s5dt")
+region = Rect2(0, 0, 239, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1whc"]
+atlas = ExtResource("1_ki6mm")
+region = Rect2(0, 0, 191, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj4t1"]
+atlas = ExtResource("1_ki6mm")
+region = Rect2(191, 0, 191, 232)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a57f6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuwmr")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0trn")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1whc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj4t1")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 10.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7hubx"]
+
+[node name="Game" type="Node2D"]
+
+[node name="ObstacleSpawner" type="Node" parent="."]
+script = ExtResource("1_5u07y")
+ObstacleGroups = [ExtResource("2_t1w3j"), ExtResource("3_3s5du"), ExtResource("4_vimja")]
+
+[node name="Timer" type="Timer" parent="ObstacleSpawner"]
+autostart = true
+
+[node name="SpawnPos" type="Marker2D" parent="ObstacleSpawner"]
+position = Vector2(2030, 947)
+
+[node name="Conboi" type="CharacterBody2D" parent="."]
+position = Vector2(274, 828)
+script = ExtResource("1_1ivi0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Conboi"]
+position = Vector2(-12, 19)
+shape = SubResource("CapsuleShape2D_l7v6f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Conboi"]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_a57f6")
+animation = &"Run"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(246, 952)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -3)
+shape = SubResource("WorldBoundaryShape2D_7hubx")
+
+[node name="Floor" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, 1)
+scale = Vector2(523.716, 1)
+texture = ExtResource("2_0hy0r")
+
+[connection signal="timeout" from="ObstacleSpawner/Timer" to="ObstacleSpawner" method="SpawnRandomObstacle"]
