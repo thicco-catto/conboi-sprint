@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c8i4oda3044vn"]
+[gd_scene load_steps=20 format=3 uid="uid://c8i4oda3044vn"]
 
 [ext_resource type="Script" path="res://Scripts/Conboi.cs" id="1_1ivi0"]
 [ext_resource type="Script" path="res://Scripts/ObstacleSpawner.cs" id="1_5u07y"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dqvjf5ld00pwm" path="res://Objects/ObstacleGroups/Single spike.tscn" id="2_t1w3j"]
 [ext_resource type="PackedScene" uid="uid://doagjavg8o835" path="res://Objects/DeathExplosion.tscn" id="2_unfua"]
 [ext_resource type="PackedScene" uid="uid://o0i1dtbv6se6" path="res://Objects/ObstacleGroups/Double spike.tscn" id="3_3s5du"]
+[ext_resource type="Script" path="res://Scripts/ScoreManager.cs" id="3_e4oem"]
 [ext_resource type="PackedScene" uid="uid://dlumnewnyje5q" path="res://Objects/DeathMenu.tscn" id="3_efqge"]
 [ext_resource type="PackedScene" uid="uid://wyvabcwaipt4" path="res://Objects/ObstacleGroups/Single spike and saw.tscn" id="4_vimja"]
 
@@ -68,6 +69,13 @@ animations = [{
 script = ExtResource("1_504mn")
 _deathExplosion = ExtResource("2_unfua")
 
+[node name="ScoreManager" type="Node" parent="."]
+script = ExtResource("3_e4oem")
+
+[node name="Timer" type="Timer" parent="ScoreManager"]
+wait_time = 0.1
+autostart = true
+
 [node name="ObstacleSpawner" type="Node" parent="."]
 script = ExtResource("1_5u07y")
 ObstacleGroups = [ExtResource("2_t1w3j"), ExtResource("3_3s5du"), ExtResource("4_vimja")]
@@ -104,6 +112,25 @@ scale = Vector2(523.716, 1)
 texture = ExtResource("2_0hy0r")
 
 [node name="Obstacles" type="Node2D" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Score" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.0
+offset_top = 54.0
+offset_right = 29.0
+offset_bottom = 191.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "0"
 
 [node name="DeathMenu" parent="." instance=ExtResource("3_efqge")]
 visible = false
