@@ -2,13 +2,14 @@ using Godot;
 
 namespace ConboiSprint;
 
-public enum GameState {
+public enum GameState
+{
     PLAYING,
     DYING,
     DEAD
 }
 
-public partial class GameManager: Node2D
+public partial class GameManager : Node2D
 {
     public GameState State { get; private set; } = GameState.PLAYING;
     public float GameSpeed { get; private set; } = 900f;
@@ -26,7 +27,8 @@ public partial class GameManager: Node2D
         _deathMenu = GetNode<Control>("DeathMenu");
     }
 
-    public void KillConboi() {
+    public void KillConboi()
+    {
         State = GameState.DYING;
         GameSpeed = 0;
 
@@ -37,13 +39,15 @@ public partial class GameManager: Node2D
         explosion.GlobalPosition = _conboi.GlobalPosition;
 
         explosion.Play("default");
-        explosion.AnimationFinished += () => {
+        explosion.AnimationFinished += () =>
+        {
             explosion.QueueFree();
             FinishGame();
         };
     }
 
-    public void FinishGame() {
+    public void FinishGame()
+    {
         State = GameState.DEAD;
         _deathMenu.Visible = true;
     }

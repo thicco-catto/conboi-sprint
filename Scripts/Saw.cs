@@ -15,7 +15,8 @@ public partial class Saw : EvilObstacle
 
         RotationDegrees = rng.RandiRange(1, 360);
         _rotationSpeed = rng.RandfRange(300, 400);
-        if(rng.Randi() % 2 == 0) {
+        if (rng.Randi() % 2 == 0)
+        {
             _rotationSpeed *= -1;
         }
     }

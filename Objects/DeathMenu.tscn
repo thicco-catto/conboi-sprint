@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dlumnewnyje5q"]
+[gd_scene load_steps=2 format=3 uid="uid://dlumnewnyje5q"]
+
+[ext_resource type="Script" path="res://Scripts/ChangeSceneButton.cs" id="1_rghd4"]
 
 [node name="DeathMenu" type="Control"]
 layout_mode = 3
@@ -47,8 +49,11 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Retry"
+script = ExtResource("1_rghd4")
+_scene = 1
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Exit"
+script = ExtResource("1_rghd4")
