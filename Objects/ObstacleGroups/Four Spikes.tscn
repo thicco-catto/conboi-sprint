@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk68hr182tyja"]
+
+[ext_resource type="PackedScene" uid="uid://bc0bis23imr4t" path="res://Objects/Spike.tscn" id="1_sorew"]
+
+[node name="FourSpikes" type="Node2D"]
+
+[node name="Spike" parent="." instance=ExtResource("1_sorew")]
+position = Vector2(60, -20)
+
+[node name="Spike2" parent="." instance=ExtResource("1_sorew")]
+position = Vector2(178, -20)
+
+[node name="Spike3" parent="." instance=ExtResource("1_sorew")]
+position = Vector2(296, -20)
+
+[node name="Spike4" parent="." instance=ExtResource("1_sorew")]
+position = Vector2(414, -20)

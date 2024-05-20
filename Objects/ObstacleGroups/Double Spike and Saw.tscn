@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfyuq7xusao4s"]
+
+[ext_resource type="PackedScene" uid="uid://bc0bis23imr4t" path="res://Objects/Spike.tscn" id="1_v8ts2"]
+[ext_resource type="PackedScene" uid="uid://4y855l8bes1f" path="res://Objects/Saw.tscn" id="2_riq68"]
+
+[node name="DoubleSpikeAndSaw" type="Node2D"]
+
+[node name="Spike" parent="." instance=ExtResource("1_v8ts2")]
+position = Vector2(62, -20)
+
+[node name="Spike2" parent="." instance=ExtResource("1_v8ts2")]
+position = Vector2(180, -20)
+
+[node name="Saw" parent="." instance=ExtResource("2_riq68")]
+position = Vector2(120, -425)

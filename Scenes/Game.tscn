@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8i4oda3044vn"]
+[gd_scene load_steps=23 format=3 uid="uid://c8i4oda3044vn"]
 
 [ext_resource type="Script" path="res://Scripts/Conboi.cs" id="1_1ivi0"]
 [ext_resource type="Script" path="res://Scripts/ObstacleSpawner.cs" id="1_5u07y"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" path="res://Scripts/ScoreManager.cs" id="3_e4oem"]
 [ext_resource type="PackedScene" uid="uid://dlumnewnyje5q" path="res://Objects/DeathMenu.tscn" id="3_efqge"]
 [ext_resource type="PackedScene" uid="uid://wyvabcwaipt4" path="res://Objects/ObstacleGroups/Single spike and saw.tscn" id="4_vimja"]
+[ext_resource type="PackedScene" uid="uid://dk68hr182tyja" path="res://Objects/ObstacleGroups/Four Spikes.tscn" id="8_ty6ku"]
+[ext_resource type="PackedScene" uid="uid://bfyuq7xusao4s" path="res://Objects/ObstacleGroups/Double Spike and Saw.tscn" id="9_3guxr"]
+[ext_resource type="PackedScene" uid="uid://dxl2k1672awns" path="res://Objects/ObstacleGroups/Double Saw In Ground.tscn" id="10_k6xj6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7v6f"]
 radius = 63.0
@@ -73,12 +76,12 @@ _deathExplosion = ExtResource("2_unfua")
 script = ExtResource("3_e4oem")
 
 [node name="Timer" type="Timer" parent="ScoreManager"]
-wait_time = 0.1
+wait_time = 0.2
 autostart = true
 
 [node name="ObstacleSpawner" type="Node" parent="."]
 script = ExtResource("1_5u07y")
-ObstacleGroups = [ExtResource("2_t1w3j"), ExtResource("3_3s5du"), ExtResource("4_vimja")]
+ObstacleGroups = [ExtResource("2_t1w3j"), ExtResource("3_3s5du"), ExtResource("4_vimja"), ExtResource("8_ty6ku"), ExtResource("9_3guxr"), ExtResource("10_k6xj6")]
 
 [node name="Timer" type="Timer" parent="ObstacleSpawner"]
 autostart = true

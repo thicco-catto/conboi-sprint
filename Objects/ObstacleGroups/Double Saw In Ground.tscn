@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxl2k1672awns"]
+
+[ext_resource type="PackedScene" uid="uid://4y855l8bes1f" path="res://Objects/Saw.tscn" id="1_7vg3m"]
+
+[node name="DoubleSawInGround" type="Node2D"]
+
+[node name="Saw2" parent="." instance=ExtResource("1_7vg3m")]
+position = Vector2(342, -93)
+
+[node name="Saw" parent="." instance=ExtResource("1_7vg3m")]
+position = Vector2(172, -95)

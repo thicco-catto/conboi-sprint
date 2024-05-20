@@ -4,8 +4,8 @@ namespace ConboiSprint;
 
 public partial class ScoreManager : Node
 {
-	private int _score = 0;
-	public int Score {
+	private long _score = 0;
+	public long Score {
 		get {
 			return _score;
 		}
