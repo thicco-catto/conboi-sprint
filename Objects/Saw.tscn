@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://4y855l8bes1f"]
 
-[ext_resource type="Script" path="res://Scripts/Obstacle.cs" id="1_2touw"]
+[ext_resource type="Script" path="res://Scripts/Saw.cs" id="1_x0k78"]
 [ext_resource type="Texture2D" uid="uid://c64vfg2j64k4j" path="res://Sprites/Saw.png" id="2_ih86a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bjkk"]
 radius = 82.0
 
 [node name="Saw" type="Area2D"]
-script = ExtResource("1_2touw")
+script = ExtResource("1_x0k78")
 
 [node name="Saw" type="Sprite2D" parent="."]
 texture = ExtResource("2_ih86a")

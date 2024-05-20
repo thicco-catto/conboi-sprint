@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://bc0bis23imr4t"]
 
-[ext_resource type="Script" path="res://Scripts/Obstacle.cs" id="1_ny05x"]
+[ext_resource type="Script" path="res://Scripts/EvilObstacle.cs" id="1_5dwle"]
 [ext_resource type="Texture2D" uid="uid://1saaa1g1peog" path="res://Sprites/Spike.png" id="1_twyxx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxd3o"]
 size = Vector2(86, 24)
 
 [node name="Spike" type="Area2D"]
-script = ExtResource("1_ny05x")
+script = ExtResource("1_5dwle")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4)

@@ -18,10 +18,12 @@ public partial class Conboi : CharacterBody2D
 	private bool _isHolding = false;
 	private double _timeHeld = 0;
 
+	private GameManager _game;
 	private AnimatedSprite2D _sprite;
 
     public override void _Ready()
     {
+		_game = GetTree().Root.GetNode<GameManager>("Game");
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 		_sprite.Play(ConboiAnim.RUN);
@@ -29,6 +31,10 @@ public partial class Conboi : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if(_game.State != GameState.PLAYING) {
+			return;
+		}
+
 		Vector2 velocity = Velocity;
 
 		float gravity = _gravity;

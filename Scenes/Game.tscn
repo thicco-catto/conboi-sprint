@@ -1,21 +1,24 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8i4oda3044vn"]
+[gd_scene load_steps=19 format=3 uid="uid://c8i4oda3044vn"]
 
 [ext_resource type="Script" path="res://Scripts/Conboi.cs" id="1_1ivi0"]
 [ext_resource type="Script" path="res://Scripts/ObstacleSpawner.cs" id="1_5u07y"]
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_504mn"]
 [ext_resource type="Texture2D" uid="uid://dipaptjltvfov" path="res://Sprites/ConboiRun.png" id="1_ki6mm"]
 [ext_resource type="Texture2D" uid="uid://c1fv0l1mobfs4" path="res://Sprites/Floor.png" id="2_0hy0r"]
 [ext_resource type="Texture2D" uid="uid://84mj14tktj73" path="res://Sprites/ConboiJump.png" id="2_6s5dt"]
-[ext_resource type="PackedScene" uid="uid://dqvjf5ld00pwm" path="res://Objects/ObstacleGroups/1.tscn" id="2_t1w3j"]
-[ext_resource type="PackedScene" uid="uid://o0i1dtbv6se6" path="res://Objects/ObstacleGroups/2.tscn" id="3_3s5du"]
-[ext_resource type="PackedScene" uid="uid://wyvabcwaipt4" path="res://Objects/ObstacleGroups/3.tscn" id="4_vimja"]
+[ext_resource type="PackedScene" uid="uid://dqvjf5ld00pwm" path="res://Objects/ObstacleGroups/Single spike.tscn" id="2_t1w3j"]
+[ext_resource type="PackedScene" uid="uid://doagjavg8o835" path="res://Objects/DeathExplosion.tscn" id="2_unfua"]
+[ext_resource type="PackedScene" uid="uid://o0i1dtbv6se6" path="res://Objects/ObstacleGroups/Double spike.tscn" id="3_3s5du"]
+[ext_resource type="PackedScene" uid="uid://dlumnewnyje5q" path="res://Objects/DeathMenu.tscn" id="3_efqge"]
+[ext_resource type="PackedScene" uid="uid://wyvabcwaipt4" path="res://Objects/ObstacleGroups/Single spike and saw.tscn" id="4_vimja"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7v6f"]
 radius = 63.0
 height = 202.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wuwmr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hie1o"]
 atlas = ExtResource("2_6s5dt")
-region = Rect2(232, 0, 229, 324)
+region = Rect2(237, 0, 224, 324)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0trn"]
 atlas = ExtResource("2_6s5dt")
@@ -33,7 +36,7 @@ region = Rect2(191, 0, 191, 232)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wuwmr")
+"texture": SubResource("AtlasTexture_hie1o")
 }],
 "loop": true,
 "name": &"Fall",
@@ -62,6 +65,8 @@ animations = [{
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7hubx"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_504mn")
+_deathExplosion = ExtResource("2_unfua")
 
 [node name="ObstacleSpawner" type="Node" parent="."]
 script = ExtResource("1_5u07y")
@@ -84,7 +89,7 @@ shape = SubResource("CapsuleShape2D_l7v6f")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Conboi"]
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_a57f6")
-animation = &"Run"
+animation = &"Fall"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(246, 952)
@@ -97,5 +102,18 @@ shape = SubResource("WorldBoundaryShape2D_7hubx")
 position = Vector2(0, 1)
 scale = Vector2(523.716, 1)
 texture = ExtResource("2_0hy0r")
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="DeathMenu" parent="." instance=ExtResource("3_efqge")]
+visible = false
+custom_minimum_size = Vector2(1023.06, 0)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="timeout" from="ObstacleSpawner/Timer" to="ObstacleSpawner" method="SpawnRandomObstacle"]
