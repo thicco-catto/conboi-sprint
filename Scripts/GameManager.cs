@@ -18,6 +18,9 @@ public partial class GameManager : Node2D
     private PackedScene _deathExplosion;
     private Conboi _conboi;
     private Control _deathMenu;
+    
+    [Signal]
+    public delegate void GameFinishedEventHandler();
 
     public override void _Ready()
     {
@@ -50,5 +53,7 @@ public partial class GameManager : Node2D
     {
         State = GameState.DEAD;
         _deathMenu.Visible = true;
+
+        EmitSignal(SignalName.GameFinished);
     }
 }

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneChanger="*res://Scripts/SceneChanger.cs"
+PersistentData="*res://Scripts/PersistentData.cs"
 
 [display]
 
